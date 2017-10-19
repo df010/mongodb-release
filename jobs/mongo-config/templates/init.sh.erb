@@ -1,0 +1,19 @@
+#!/bin/bash -ex
+source /var/vcap/jobs/mongo-config/bin/env.sh
+mkdir -p $LOG_DIR $RUN_DIR $STORE_DIR/data
+chown -R vcap:vcap $LOG_DIR $RUN_DIR $STORE_DIR    
+
+<% if spec.index == 0 %>
+    if [ ! -f $STORE_DIR/mongodb.conf ]; then  #change to test for whether user exists
+      $PACKAGE_DIR/bin/mongod --config $JOB_DIR/config/mongodb.conf
+      while [[ ! `pgrep mongod` ]]; do
+        sleep 1;
+      done;
+      $JOB_DIR/bin/create-user.sh
+      $PACKAGE_DIR/bin/mongod --config $JOB_DIR/config/mongodb.conf --shutdown
+    fi 
+<% end
+%>
+
+sed "s/^#-//g"  $JOB_DIR/config/mongodb.conf > $STORE_DIR/mongodb.conf
+chown -R vcap:vcap $LOG_DIR $RUN_DIR $STORE_DIR

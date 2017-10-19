@@ -1,0 +1,8 @@
+#!/bin/bash -ex
+source /var/vcap/jobs/mongos/bin/env.sh
+mkdir -p $LOG_DIR $RUN_DIR $STORE_DIR/data
+chown -R vcap:vcap $LOG_DIR $RUN_DIR $STORE_DIR
+sed "s/^#-//g"  $JOB_DIR/config/mongodb.conf > $STORE_DIR/mongodb.conf
+chown -R vcap:vcap $LOG_DIR $RUN_DIR $STORE_DIR
+
+

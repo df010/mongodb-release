@@ -1,0 +1,10 @@
+rs.initiate(
+  {
+    _id: "config",
+    members: [
+<% link("peer_servers").instances.each_with_index do |instance,index| %>
+    { _id: <%=index%>, host: "<%= instance.address %>:20000" },
+<% end %>
+    ]
+  }
+);

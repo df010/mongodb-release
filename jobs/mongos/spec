@@ -1,0 +1,28 @@
+---
+name: mongos
+
+templates:
+  mongodb-keyfile.erb: config/mongodb-keyfile
+  mongodb.conf.erb: config/mongodb.conf
+  mongodb_ctl.erb: bin/mongodb_ctl
+  init.sh.erb: bin/init.sh
+  env.sh.erb: bin/env.sh
+packages:
+- mongodb
+- common
+
+provides:
+- name: servers
+  type: servers_type
+
+consumes:
+- name: peer_servers
+  type: servers_type
+- name: config_servers
+  type: servers_type
+
+properties:
+  mongodb.keyfile:
+    default: 1
+    description: mongodb.keyfile
+

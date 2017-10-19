@@ -1,0 +1,7 @@
+#!/bin/bash -ex
+source /var/vcap/jobs/mongo-config/bin/env.sh
+<% if spec.index == 0 %>
+    $JOB_DIR/bin/create-cluster.sh
+<%
+   end
+%>

@@ -1,0 +1,44 @@
+# mongod.conf
+
+# for documentation of all options, see:
+#   http://docs.mongodb.org/manual/reference/configuration-options/
+
+# Where and how to store data.
+storage:
+  dbPath: /var/vcap/store/mongo-shard/data
+  journal:
+    enabled: true
+#  engine:
+#  mmapv1:
+#  wiredTiger:
+
+
+# where to write logging data.
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/vcap/sys/log/mongo-shard/log.log
+
+# network interfaces
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+
+
+processManagement:
+  fork: true
+  pidFilePath: /var/vcap/sys/run/mongo-shard/mongodb.pid
+
+#-security:
+#-  authorization: enabled
+#-  keyFile: /var/vcap/store/mongo-shard/mongodb-keyfile
+
+
+#-replication:
+#-  replSetName: <%=p("mongodb.replSetName")%>
+#-  oplogSizeMB: 10240
+
+
+sharding:
+  clusterRole: shardsvr
+

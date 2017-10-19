@@ -1,0 +1,28 @@
+# mongod.conf
+
+# for documentation of all options, see:
+#   http://docs.mongodb.org/manual/reference/configuration-options/
+
+
+# where to write logging data.
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/vcap/sys/log/mongos/log.log
+
+# network interfaces
+net:
+  port: 30000
+  bindIp: 0.0.0.0
+
+
+processManagement:
+  fork: true
+  pidFilePath: /var/vcap/sys/run/mongos/mongodb.pid
+
+#-security:
+#-  keyFile: /var/vcap/store/mongos/mongodb-keyfile
+
+sharding:
+    configDB: config/<%=link("config_servers").instances.map {|instance| instance.address+":20000"}.join(",")%>
+

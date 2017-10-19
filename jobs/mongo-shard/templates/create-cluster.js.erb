@@ -1,0 +1,10 @@
+rs.initiate(
+  {
+    _id: "<%=p("mongodb.replSetName")%>",
+    members: [
+<% link("peer_servers").instances.each_with_index do |instance,index| %>
+    { _id: <%=index%>, host: "<%= instance.address %>:27017" },
+<% end %>
+    ]
+  }
+);

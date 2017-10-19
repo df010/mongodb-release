@@ -1,0 +1,16 @@
+#!/bin/bash
+export PKG_DIR=/var/vcap/packages/mongodb
+export JOB_DIR=/var/vcap/jobs/mongo-config
+<% if spec.index == 0 %>
+while true; do
+<% link("peer_servers").instances.each_with_index do |instance,index| %>
+    [[ `nc -z <%= instance.address %> 20000; echo $?` != 0 ]] && continue;
+<% end %>
+
+break;
+
+done;
+
+$PKG_DIR/bin/mongo localhost:20000/admin -u root -p root $JOB_DIR/bin/create-cluster.js
+
+<% end %>

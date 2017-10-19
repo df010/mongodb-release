@@ -1,0 +1,1 @@
+sh.addShard("<%=p("mongodb.replSetName")%>/<%=(link("peer_servers").instances.map {|ip| ip.address+":27017" } ).join(",")%>");

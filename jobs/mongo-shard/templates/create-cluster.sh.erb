@@ -1,0 +1,15 @@
+#!/bin/bash
+source /var/vcap/jobs/mongo-shard/bin/env.sh
+<% if spec.index == 0 %>
+while true; do
+<% link("peer_servers").instances.each_with_index do |instance,index| %>
+    [[ `nc -z <%= instance.address %> 27017; echo $?` != 0 ]] && continue;
+<% end %>
+
+break;
+
+done;
+
+$PACKAGE_DIR/bin/mongo localhost:27017/admin -u root -p root $JOB_DIR/bin/create-cluster.js
+$PACKAGE_DIR/bin/mongo <%=link("mongos_servers").instances[0].address%>:30000/admin -u root -p root $JOB_DIR/bin/add-shard.js
+<% end %>

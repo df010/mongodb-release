@@ -1,0 +1,6 @@
+#for file mongodb-linux-x86_64-ubuntu1404-3.4.4.tgz
+set -e
+tar -xvf mongodb/mongodb-linux-x86_64-ubuntu1404-3.4.4.tgz
+cd mongodb-linux-x86_64-ubuntu1404-3.4.4
+cp -r bin ${BOSH_INSTALL_TARGET}
+cd -

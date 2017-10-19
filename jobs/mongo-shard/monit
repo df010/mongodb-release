@@ -1,0 +1,5 @@
+check process mongo-shard
+  with pidfile /var/vcap/sys/run/mongo-shard/mongodb.pid
+  start program "/var/vcap/jobs/mongo-shard/bin/mongodb_ctl start"
+  stop program "/var/vcap/jobs/mongo-shard/bin/mongodb_ctl stop"
+  group vcap

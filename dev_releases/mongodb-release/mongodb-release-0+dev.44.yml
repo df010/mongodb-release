@@ -1,0 +1,28 @@
+name: mongodb-release
+version: 0+dev.44
+commit_hash: 93693c8
+uncommitted_changes: true
+jobs:
+- name: mongo-config
+  version: 71211b55f923a13b22c8ae4775d728506cd1da38
+  fingerprint: 71211b55f923a13b22c8ae4775d728506cd1da38
+  sha1: da71b2cefcfd3e0dffd1bff6a8dc83c774f3525f
+- name: mongo-shard
+  version: de785b2f6e93ac6c82be63cb7afc48776b41aa41
+  fingerprint: de785b2f6e93ac6c82be63cb7afc48776b41aa41
+  sha1: 6874c125fad40d141234070e10fdf112bf0742c3
+- name: mongos
+  version: e420e141af03075db341c8581b2e09cf33c33c4f
+  fingerprint: e420e141af03075db341c8581b2e09cf33c33c4f
+  sha1: 21d02d8a300f789c78d9216a2fed86c177112606
+packages:
+- name: common
+  version: 3f58b904b959a3db9d06ec7eba0604aa84862d97
+  fingerprint: 3f58b904b959a3db9d06ec7eba0604aa84862d97
+  sha1: 3134002c28994268811f93e943363a8b9954ac12
+  dependencies: []
+- name: mongodb
+  version: 476c8c65e500bfe59651a5393e12fcf91290befe
+  fingerprint: 476c8c65e500bfe59651a5393e12fcf91290befe
+  sha1: 281bea78380602321d282f89af31db408cea0dbc
+  dependencies: []

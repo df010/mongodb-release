@@ -1,0 +1,5 @@
+check process mongos
+  with pidfile /var/vcap/sys/run/mongos/mongodb.pid
+  start program "/var/vcap/jobs/mongos/bin/mongodb_ctl start"
+  stop program "/var/vcap/jobs/mongos/bin/mongodb_ctl stop"
+  group vcap
